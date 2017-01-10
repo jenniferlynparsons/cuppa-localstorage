@@ -52,7 +52,6 @@ FEATURES
 - reference
   - tea type cheat sheet with suggested times
   - tea holidays
-  - random tea facts (TODO where would these come from?)
 
 - account
   - sign in
