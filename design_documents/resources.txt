@@ -1,0 +1,16 @@
+https://html5bones.com/
+https://milligram.github.io/
+
+// FIREBASE APP
+<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyChZgazFomM3nfocNjOeQhRWXVo6rW7-o0",
+    authDomain: "cuppa-e9723.firebaseapp.com",
+    databaseURL: "https://cuppa-e9723.firebaseio.com",
+    storageBucket: "cuppa-e9723.appspot.com",
+    messagingSenderId: "946638002977"
+  };
+  firebase.initializeApp(config);
+</script>
