@@ -9,71 +9,8 @@
   <script src="cuppa.js"></script>
 </head>
 <body ng-app="cuppa">
-  <div id="list" ng-controller="TeaListController as list">
-    <h2>List</h2>
-    <ul ng-repeat="brew in list.brews">
-      <li>{{brew.name}} <a href="#teadetails" role="submit" ng-click="">View Details</a> <a href="#teaeditdetails" role="submit" ng-click="">Edit Details</a>  <a href="" role="button">X</a></li>
-    </ul>
-  </div>
-  <div id="teadetails" ng-controller="TeaDetailController as details">
-    <div >
-      <h1>{{details.brew.name}}</h1>
-      <div>
-        <h2>Type</h2>
-        <p>{{details.brew.type}}</p>
-      </div>
-
-      <div>
-        <h2>Ingredients</h2>
-        <ul>
-          <li>{{details.brew.ingredients}}</li>
-        </ul>
-      </div>
-
-      <div>
-        <h2>Style</h2>
-        <p>{{details.brew.style}}</p>
-      </div>
-
-      <div>
-        <h2>Servings</h2>
-        <p><span>{{details.brew.servings}}</span> cups</p>
-      </div>
-
-      <div>
-        <h2>Brand</h2>
-        <p>{{details.brew.brand}}</p>
-      </div>
-      <div>
-        <h2>Distributor</h2>
-        <p>{{details.brew.distributor}}</p>
-      </div>
-
-      <div>
-        <h2>Source</h2>
-        <ul>
-          <li>{{details.brew.source}}</li>
-        </ul>
-      </div>
-
-      <div>
-        <h2>Rating</h2>
-        <p><span>{{details.brew.rating}}</span> stars</p>
-      </div>
-
-      <h2>Favorite: {{details.brew.favorite}}</h2>
-
-      <div>
-        <h2>Notes</h2>
-        <div>
-          <p>{{details.brew.notes}}</p>
-        </div>
-      </div>
-
-      <button id="tedit" name="tedit" class="btn btn-primary">Edit Tea</button>
-      <button id="tedit" name="tedit" class="btn btn-primary">Make a Cuppa</button>
-    </div>
-  </div>
+  <tea-list></tea-list>
+  <tea-details></tea-details>
   <div id="addnew">
     <h2>Add New Tea</h2>
     <form class="form-horizontal">

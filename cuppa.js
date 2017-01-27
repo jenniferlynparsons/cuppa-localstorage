@@ -1,13 +1,27 @@
 (function(){
   var app = angular.module("cuppa",[]);
 
-  app.controller('TeaListController', function(){
-    this.brews = teas;
+  app.directive('teaList', function(){
+    return {
+      restrict: 'E',
+      templateUrl:'app/components/tealist/tealist.html',
+      controller: function(){
+        this.brews = teas;
+      },
+      controllerAs: 'teas'
+    };
+  });
+  app.directive('teaDetails', function(){
+    return {
+      restrict: 'E',
+      templateUrl:'app/components/teadetails/teadetails.html',
+      controller: function(){
+        this.brews = teas;
+      },
+      controllerAs: 'tea'
+    };
   });
 
-  app.controller('TeaDetailController', function(){
-    this.brews = teas;
-  });
 
   var teas = [
     {
