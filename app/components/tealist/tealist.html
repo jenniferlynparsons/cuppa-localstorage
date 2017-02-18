@@ -1,6 +1,12 @@
 <div id="list">
   <h2>List</h2>
-  <ul ng-repeat="brew in teas.brews">
-    <li>{{brew.name}} <a ng-href="#teadetails" role="submit" ng-click="">View Details</a> <a ng-href="#teaeditdetails" role="submit" ng-click="">Edit Details</a>  <a ng-href="" role="button">X</a></li>
+  <ul>
+    <li ng-repeat="tea in $ctrl.teas">{{tea.name}} <button ng-click="teadetails=true;$ctrl.chosenTea = tea">View</button> <button ng-click="$ctrl.editTea(tea)">Edit</button>  <button ng-click="$ctrl.deleteTea($ctrl.chosenTea.name)">X</button></li>
   </ul>
+  <button ng-click="addedittea=true" class="pure-button">Add Tea</button>
 </div>
+
+<tea-add-edit ng-show="addedittea"></tea-add-edit>
+
+<!-- TODO: hide by default, show with ng-click  ng-show="teadetails" -->
+<tea-details tea="$ctrl.chosenTea"></tea-details>

@@ -1,59 +1,61 @@
 <div id="teadetails">
   <div >
-    <h1>{{tea.name}}</h1>
+    <h1>{{$ctrl.tea.name}}</h1>
     <div>
       <h2>Type</h2>
-      <p>{{tea.type}}</p>
+      <p>{{$ctrl.tea.type}}</p>
     </div>
 
     <div>
       <h2>Ingredients</h2>
       <ul>
-        <li>{{tea.ingredients}}</li>
+        <li ng-repeat="ingredient in $ctrl.tea.ingredients">{{ingredient}}</li>
       </ul>
     </div>
 
     <div>
       <h2>Style</h2>
-      <p>{{tea.style}}</p>
+      <p>{{$ctrl.tea.style}}</p>
     </div>
 
     <div>
       <h2>Servings</h2>
-      <p><span>{{tea.servings}}</span> cups</p>
+      <p><span>{{$ctrl.tea.servings}}</span> cups</p>
     </div>
 
     <div>
       <h2>Brand</h2>
-      <p>{{tea.brand}}</p>
+      <p>{{$ctrl.tea.brand}}</p>
     </div>
     <div>
       <h2>Distributor</h2>
-      <p>{{tea.distributor}}</p>
+      <p>{{$ctrl.tea.distributor}}</p>
     </div>
 
     <div>
       <h2>Source</h2>
       <ul>
-        <li>{{tea.source}}</li>
+        <li ng-repeat="source in $ctrl.tea.source">{{source}}</li>
       </ul>
     </div>
 
     <div>
       <h2>Rating</h2>
-      <p><span>{{tea.rating}}</span> stars</p>
+      <p><span>{{$ctrl.tea.rating}}</span> stars</p>
     </div>
 
-    <h2>Favorite: {{tea.favorite}}</h2>
+    <div ng-show="$ctrl.tea.favorite">
+      <h2>A favorite!</h2>
+    </div>
 
     <div>
       <h2>Notes</h2>
       <div>
-        <p>{{tea.notes}}</p>
+        <p>{{$ctrl.tea.notes}}</p>
       </div>
     </div>
 
-    <button id="tedit" name="tedit" class="btn btn-primary">Edit Tea</button>
-    <button id="tedit" name="tedit" class="btn btn-primary">Make a Cuppa</button>
+    <!-- <button id="tedit" name="tedit" class="btn btn-primary">Edit Tea</button>
+    <button id="tedit" name="tedit" class="btn btn-primary">Make a Cuppa</button> -->
   </div>
 </div>
