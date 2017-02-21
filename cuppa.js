@@ -51,17 +51,10 @@
       controller: addEditController
   });
 
-  function addEditController(teas, teaType, teaIngredients, teaStyle, teaCaffeine, teaBrand, teaSource, teaDistributor, teaSource){
+  function addEditController(teas, teaOptions){
     var $ctrl = this;
     $ctrl.teas = teas;
-    $ctrl.teaType = teaType;
-    $ctrl.teaIngredients = teaIngredients;
-    $ctrl.teaStyle = teaStyle;
-    $ctrl.teaCaffeine = teaCaffeine;
-    $ctrl.teaBrand = teaBrand;
-    $ctrl.teaSource = teaSource;
-    $ctrl.teaDistributor = teaDistributor;
-    $ctrl.teaSource = teaSource;
+    $ctrl.teaOptions = teaOptions;
     console.log($ctrl.teas);
     $ctrl.newTea = {
       name: "Test",
@@ -130,82 +123,66 @@
     ];
     return teas;
   });
-  app.factory('teaType', function() {
-    var teaType = [
-      "Black",
-      "Chai",
-      "Flowering",
-      "Food",
-      "Fruit",
-      "Green",
-      "Guayusa",
-      "Herbal",
-      "Honeybush",
-      "Matcha",
-      "Oolong",
-      "Pu Erh",
-      "Rooibos",
-      "White",
-      "Yellow",
-      "Yerba Maté"
-    ];
-    return teaType;
-  });
-  app.factory('teaIngredients', function() {
-    var teaIngredients = [
-      "Tea",
-      "Chocolate",
-      "Chamomile",
-      "Vanilla",
-      "Other"
-    ];
-    return teaIngredients;
-  });
-  app.factory('teaStyle', function() {
-    var teaStyle = [
-      "Loose",
-      "Bag",
-      "Sachet"
-    ];
-    return teaStyle;
-  });
-  app.factory('teaCaffeine', function() {
-    var teaCaffeine = [
-      "Low",
-      "Medium",
-      "High",
-      "Decaffeinated",
-      "Caffeine Free"
-    ];
-    return teaCaffeine;
-  });
-  app.factory('teaBrand', function() {
-    var teaBrand = [
-      "Adagio",
-      "Fairway",
-      "McNulty's",
-      "Mighty Leaf",
-      "Republic of Tea",
-      "Yorkshire Tea"
-    ];
-    return teaBrand;
-  });
-  app.factory('teaDistributor', function() {
-    var teaDistributor = [
-      "Adagio",
-      "Fairway",
-      "ShopRite",
-      "Whole Foods"
-    ];
-    return teaDistributor;
-  });
-  app.factory('teaSource', function() {
-    var teaSource = [
-      "Africa",
-      "China",
-      "India",
-      "Various"
-    ];
-    return teaSource;
+  app.factory('teaOptions', function() {
+    var teaOptions = {
+      teaType: [
+        "Black",
+        "Chai",
+        "Flowering",
+        "Food",
+        "Fruit",
+        "Green",
+        "Guayusa",
+        "Herbal",
+        "Honeybush",
+        "Matcha",
+        "Oolong",
+        "Pu Erh",
+        "Rooibos",
+        "White",
+        "Yellow",
+        "Yerba Maté"
+      ],
+      teaIngredients: [
+        "Tea",
+        "Chocolate",
+        "Chamomile",
+        "Vanilla",
+        "Other"
+      ],
+      teaStyle: [
+        "Loose",
+        "Bag",
+        "Sachet"
+      ],
+      teaCaffeine: [
+        "Low",
+        "Medium",
+        "High",
+        "Decaffeinated",
+        "Caffeine Free"
+      ],
+      teaBrand: [
+        "Adagio",
+        "Fairway",
+        "McNulty's",
+        "Mighty Leaf",
+        "Republic of Tea",
+        "Yorkshire Tea"
+      ],
+      teaDistributor: [
+        "Adagio",
+        "Fairway",
+        "ShopRite",
+        "Whole Foods"
+      ],
+      teaSource: [
+        "Africa",
+        "China",
+        "India",
+        "Various"
+      ]
+    }
+    return teaOptions;
   });
 })();

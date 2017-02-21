@@ -1,7 +1,7 @@
 <div id="list">
   <h2>List</h2>
   <ul>
-    <li ng-repeat="tea in $ctrl.teas">{{tea.name}} <button ng-click="teadetails=true;$ctrl.chosenTea = tea">View</button> <button ng-click="$ctrl.editTea(tea)">Edit</button>  <button ng-click="$ctrl.deleteTea($ctrl.chosenTea.name)">X</button></li>
+    <li ng-repeat="tea in $ctrl.teas" ng-click="$ctrl.chosenTea = tea">{{tea.name}} <button ng-click="teadetails=true;">View</button> <button ng-click="$ctrl.editTea(tea);">Edit</button>  <button ng-click="$ctrl.deleteTea($ctrl.chosenTea.name)">X</button></li>
   </ul>
   <button ng-click="addedittea=true" class="pure-button">Add Tea</button>
 </div>

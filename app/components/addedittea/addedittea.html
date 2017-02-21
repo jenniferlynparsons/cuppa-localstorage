@@ -9,27 +9,27 @@
 
       <div>
         <label for="type">Type</label>
-        <select ng-model="$ctrl.newTea.type" ng-options="option for option in $ctrl.teaType track by option.id" id="type" name="type">
+        <select ng-model="$ctrl.newTea.type" ng-options="option for option in $ctrl.teaOptions.teaType track by option.id" id="type" name="type">
         </select>
       </div>
 
 
       <div>
         <label for="ingredients">Ingredients</label>
-        <select ng-model="$ctrl.newTea.ingredients"  ng-options="option for option in $ctrl.teaIngredients track by option.id" id="ingredients" name="ingredients" multiple="multiple">
+        <select ng-model="$ctrl.newTea.ingredients"  ng-options="option for option in $ctrl.teaOptions.teaIngredients track by option.id" id="ingredients" name="ingredients" multiple="multiple">
         </select>
       </div>
 
 
       <div>
         <label for="style">Style</label>
-        <select ng-model="$ctrl.newTea.style" ng-options="option for option in $ctrl.teaStyle track by option.id" id="style" name="style">
+        <select ng-model="$ctrl.newTea.style" ng-options="option for option in $ctrl.teaOptions.teaStyle track by option.id" id="style" name="style">
         </select>
       </div>
 
       <div>
         <label for="caffeine">Caffeine Level</label>
-        <select ng-model="$ctrl.newTea.caffeine" ng-options="option for option in $ctrl.teaCaffeine track by option.id" id="style" name="style">
+        <select ng-model="$ctrl.newTea.caffeine" ng-options="option for option in $ctrl.teaOptions.teaCaffeine track by option.id" id="style" name="style">
         </select>
       </div>
 
@@ -41,20 +41,20 @@
 
       <div>
         <label for="brand">Brand</label>
-        <select ng-model="$ctrl.newTea.brand" ng-options="option for option in $ctrl.teaBrand track by option.id" id="brand" name="brand">
+        <select ng-model="$ctrl.newTea.brand" ng-options="option for option in $ctrl.teaOptions.teaBrand track by option.id" id="brand" name="brand">
         </select>
       </div>
 
       <div>
         <label for="distributor">Distributor</label>
-        <select ng-model="$ctrl.newTea.distributor" ng-options="option for option in $ctrl.teaDistributor track by option.id" id="distributor" name="distributor">
+        <select ng-model="$ctrl.newTea.distributor" ng-options="option for option in $ctrl.teaOptions.teaDistributor track by option.id" id="distributor" name="distributor">
         </select>
       </div>
 
 
       <div>
         <label for="source">Source</label>
-        <select ng-model="$ctrl.newTea.source" ng-options="option for option in $ctrl.teaSource track by option.id" id="source" name="source" multiple>
+        <select ng-model="$ctrl.newTea.source" ng-options="option for option in $ctrl.teaOptions.teaSource track by option.id" id="source" name="source" multiple>
         </select>
       </div>
 
