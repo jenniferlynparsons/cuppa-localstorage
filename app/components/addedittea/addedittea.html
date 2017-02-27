@@ -4,57 +4,57 @@
     <fieldset>
       <div>
         <label for="name">Name</label>
-        <input ng-model="$ctrl.newTea.name" id="name" name="name" placeholder="Pu-eruh" type="text">
+        <input ng-model="$ctrl.tea.name" id="name" name="name" placeholder="Pu-eruh" value="{{$ctrl.tea.name}}" type="text">
       </div>
 
       <div>
         <label for="type">Type</label>
-        <select ng-model="$ctrl.newTea.type" ng-options="option for option in $ctrl.teaOptions.teaType track by option.id" id="type" name="type">
+        <select ng-model="$ctrl.tea.type" ng-options="option for option in $ctrl.teaOptions.teaType track by option.id" id="type" name="type">
         </select>
       </div>
 
 
       <div>
         <label for="ingredients">Ingredients</label>
-        <select ng-model="$ctrl.newTea.ingredients"  ng-options="option for option in $ctrl.teaOptions.teaIngredients track by option.id" id="ingredients" name="ingredients" multiple="multiple">
+        <select ng-model="$ctrl.tea.ingredients"  ng-options="option for option in $ctrl.teaOptions.teaIngredients track by option.id" id="ingredients" name="ingredients" multiple="multiple">
         </select>
       </div>
 
 
       <div>
         <label for="style">Style</label>
-        <select ng-model="$ctrl.newTea.style" ng-options="option for option in $ctrl.teaOptions.teaStyle track by option.id" id="style" name="style">
+        <select ng-model="$ctrl.tea.style" ng-options="option for option in $ctrl.teaOptions.teaStyle track by option.id" id="style" name="style">
         </select>
       </div>
 
       <div>
         <label for="caffeine">Caffeine Level</label>
-        <select ng-model="$ctrl.newTea.caffeine" ng-options="option for option in $ctrl.teaOptions.teaCaffeine track by option.id" id="style" name="style">
+        <select ng-model="$ctrl.tea.caffeine" ng-options="option for option in $ctrl.teaOptions.teaCaffeine track by option.id" id="style" name="style">
         </select>
       </div>
 
       <div>
         <label for="servings">Servings</label>
-        <input ng-model="$ctrl.newTea.servings" id="servings" name="servings" placeholder="20" type="text">
+        <input ng-model="$ctrl.tea.servings" id="servings" name="servings" placeholder="20" type="text">
       </div>
 
 
       <div>
         <label for="brand">Brand</label>
-        <select ng-model="$ctrl.newTea.brand" ng-options="option for option in $ctrl.teaOptions.teaBrand track by option.id" id="brand" name="brand">
+        <select ng-model="$ctrl.tea.brand" ng-options="option for option in $ctrl.teaOptions.teaBrand track by option.id" id="brand" name="brand">
         </select>
       </div>
 
       <div>
         <label for="distributor">Distributor</label>
-        <select ng-model="$ctrl.newTea.distributor" ng-options="option for option in $ctrl.teaOptions.teaDistributor track by option.id" id="distributor" name="distributor">
+        <select ng-model="$ctrl.tea.distributor" ng-options="option for option in $ctrl.teaOptions.teaDistributor track by option.id" id="distributor" name="distributor">
         </select>
       </div>
 
 
       <div>
         <label for="source">Source</label>
-        <select ng-model="$ctrl.newTea.source" ng-options="option for option in $ctrl.teaOptions.teaSource track by option.id" id="source" name="source" multiple>
+        <select ng-model="$ctrl.tea.source" ng-options="option for option in $ctrl.teaOptions.teaSource track by option.id" id="source" name="source" multiple>
         </select>
       </div>
 
@@ -62,39 +62,39 @@
       <div>
         <label for="rating">Rating</label>
         <label for="radios-0">
-          <input ng-model="$ctrl.newTea.rating" name="rating" id="radios-0" value="1" type="radio">
+          <input ng-model="$ctrl.tea.rating" name="rating" id="radios-0" value="1" type="radio">
           1
         </label>
         <label for="radios-1">
-          <input ng-model="$ctrl.newTea.rating" name="rating" id="radios-1" value="2" type="radio">
+          <input ng-model="$ctrl.tea.rating" name="rating" id="radios-1" value="2" type="radio">
           2
         </label>
         <label for="radios-2">
-          <input ng-model="$ctrl.newTea.rating" name="rating" id="radios-2" value="3" checked="checked" type="radio">
+          <input ng-model="$ctrl.tea.rating" name="rating" id="radios-2" value="3" checked="checked" type="radio">
           3
         </label>
         <label for="radios-3">
-          <input ng-model="$ctrl.newTea.rating" name="rating" id="radios-3" value="4" type="radio">
+          <input ng-model="$ctrl.tea.rating" name="rating" id="radios-3" value="4" type="radio">
           4
         </label>
         <label for="radios-4">
-          <input ng-model="$ctrl.newTea.rating" name="rating" id="radios-4" value="5" type="radio">
+          <input ng-model="$ctrl.tea.rating" name="rating" id="radios-4" value="5" type="radio">
           5
         </label>
       </div>
 
       <div>
         <label for="favorite">Favorite</label>
-        <input ng-model="$ctrl.newTea.favorite" name="favorite" id="favorite" value="true" type="checkbox">
+        <input ng-model="$ctrl.tea.favorite" name="favorite" id="favorite" value="true" type="checkbox">
       </div>
 
       <div>
         <label for="notes">Notes</label>
-        <textarea ng-model="$ctrl.newTea.notes" id="notes" name="notes">Notes about this tea</textarea>
+        <textarea ng-model="$ctrl.tea.notes" id="notes" name="notes">Notes about this tea</textarea>
       </div>
 
       <div>
-        <button ng-click="$ctrl.addTea(); addedittea=false" id="save" name="save">Save New Tea</button>
+        <button ng-click="$ctrl.saveTea();" id="save" name="save">Save New Tea</button>
       </div>
 
     </fieldset>

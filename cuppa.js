@@ -11,7 +11,15 @@
     $ctrl.teas = teas;
     $ctrl.deleteTea = function(tea) {
         $ctrl.teas.splice($ctrl.teas.indexOf(tea), 1);
-    }
+    };
+    $ctrl.viewTea = function(tea){
+      $ctrl.chosenTea = tea;
+      $ctrl.shownForm = "teadetails";
+    };
+    $ctrl.editTea = function(tea){
+      $ctrl.chosenTea = tea;
+      $ctrl.shownForm = "addedittea";
+    };
   }
 
   app.component('teaDetails', {
@@ -27,52 +35,49 @@
 
   function detailsController(){
     var $ctrl = this;
-    // $ctrl.$onInit = function() {
-    //     if ($ctrl.listCtrl) {
-    //         $ctrl.listCtrl.deleteTea($ctrl.tea);
-    //     }
-    // }
-    // $ctrl.$onChanges = function(oldVals, newVals) { // {}
-    //     if ($ctrl.tea) {
-    //         $ctrl.tea.lookedAt = true;
-    //         commService.commValue = $ctrl.tea.name + $ctrl.tea.quantity;
-    //     }
-    // }
   }
 
   app.component('teaAddEdit', {
       templateUrl:'app/components/addedittea/addedittea.html',
       bindings: {
-        'tea': '@' // $ctrl.tea
+        'tea': '<' // $ctrl.tea
       },
-      require: {
-        'listCtrl': '^?list'
-      },
+      require:{'listCtrl': '^?list'},
       controller: addEditController
   });
 
   function addEditController(teas, teaOptions){
     var $ctrl = this;
+    var editing = false;
     $ctrl.teas = teas;
     $ctrl.teaOptions = teaOptions;
-    console.log($ctrl.teas);
-    $ctrl.newTea = {
-      name: "Test",
-      type: "Black",
-      ingredients: ["Tea", "Vanilla"],
-      style: "Loose",
-      caffeine: "Medium",
-      servings: 5,
-      brand: "McNulty's",
-      distributor: "McNulty's",
-      source: ["China"],
-      rating: 5,
-      favorite: false,
-      notes: "This is a good tea."
-    }
-    $ctrl.addTea = function(){
-      $ctrl.teas.push($ctrl.newTea);
-      console.log($ctrl.teas);
+    $ctrl.saveTea = function(){
+      if(!editing){
+        $ctrl.teas.push($ctrl.tea)
+      }else{
+        $ctrl.shownForm = "tealist";
+      };
+    };
+    $ctrl.$onChanges = function(){
+      if($ctrl.tea != null){
+        editing = true;
+      }else{
+        editing = false;
+        $ctrl.tea = {
+          name: "Tea Name",
+          type: "Black",
+          ingredients: ["Tea"],
+          style: "Loose",
+          caffeine: "Medium",
+          servings: 5,
+          brand: "McNulty's",
+          distributor: "McNulty's",
+          source: ["China"],
+          rating: 5,
+          favorite: false,
+          notes: "Notes on tea flavor, etc."
+        }
+      }
     };
   }
 

@@ -1,12 +1,11 @@
-<div id="list">
+<div id="list" ng-init="$ctrl.shownForm = 'tealist'" ng-show="$ctrl.shownForm == 'tealist'">
   <h2>List</h2>
   <ul>
-    <li ng-repeat="tea in $ctrl.teas" ng-click="$ctrl.chosenTea = tea">{{tea.name}} <button ng-click="teadetails=true;">View</button> <button ng-click="$ctrl.editTea(tea);">Edit</button>  <button ng-click="$ctrl.deleteTea($ctrl.chosenTea.name)">X</button></li>
+    <li ng-repeat="tea in $ctrl.teas">{{tea.name}} <button ng-click="$ctrl.viewTea(tea)">View</button> <button ng-click="$ctrl.editTea(tea)">Edit</button>  <button ng-click="$ctrl.deleteTea($ctrl.chosenTea.name)">X</button></li>
   </ul>
-  <button ng-click="addedittea=true" class="pure-button">Add Tea</button>
+  <button ng-click="$ctrl.shownForm = 'addedittea'" class="pure-button">Add Tea</button>
 </div>
 
-<tea-add-edit ng-show="addedittea"></tea-add-edit>
+<tea-add-edit tea="$ctrl.chosenTea" ng-show="$ctrl.shownForm == 'addedittea'"></tea-add-edit>
 
-<!-- TODO: hide by default, show with ng-click  ng-show="teadetails" -->
-<tea-details tea="$ctrl.chosenTea"></tea-details>
+<tea-details ng-show="$ctrl.shownForm == 'teadetails'" tea="$ctrl.chosenTea"></tea-details>
