@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React from "react";
 import { Router } from "@reach/router";
+import { saveTeas, loadTeas } from "../../storage";
 import NavBar from "../NavBar";
 import TeaEditor from "../TeaEditor";
 import TeaList from "../TeaList";
@@ -37,33 +38,37 @@ class App extends React.Component {
 
   handleNameChange = event => {
     this.setState({
-      tea: { name: event.target.value }
+      tea: { ...this.state.tea, name: event.target.value }
     });
   };
 
   handleBrandChange = event => {
     this.setState({
-      tea: { brand: event.target.value }
+      tea: { ...this.state.tea, brand: event.target.value }
     });
   };
 
   handleTypeChange = event => {
     this.setState({
-      tea: { type: event.target.value }
+      tea: { ...this.state.tea, type: event.target.value }
     });
   };
 
   handleServingsChange = event => {
     this.setState({
-      tea: { servings: event.target.value }
+      tea: { ...this.state.tea, servings: event.target.value }
     });
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log("submit triggered");
-    console.log(this.state.tea);
+    const newTea = [...this.state.teas, this.state.tea];
+    saveTeas(newTea);
   };
+
+  componentDidMount() {
+    this.setState({ teas: loadTeas() });
+  }
 
   render() {
     return (
