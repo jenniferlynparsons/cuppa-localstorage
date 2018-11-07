@@ -11,12 +11,13 @@ class TeaList extends React.Component {
               <td>Quantity</td>
               <td />
               <td />
+              <td />
             </tr>
           </thead>
           <tbody>
             {this.props.teas.map(tea => {
               return (
-                <tr key={tea.name + tea.brand}>
+                <tr key={tea.id}>
                   <td>{tea.name}</td>
                   <td>{tea.servings}</td>
                   <td>
@@ -24,6 +25,13 @@ class TeaList extends React.Component {
                   </td>
                   <td>
                     <a href="/">Edit</a>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => this.props.handleDelete(event, tea.id)}
+                    >
+                      X
+                    </button>
                   </td>
                 </tr>
               );

@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React from "react";
+import uuidv4 from "uuid/v4";
 import { Router } from "@reach/router";
 import { saveTeas, loadTeas } from "../../storage";
 import NavBar from "../NavBar";
@@ -14,6 +15,7 @@ class App extends React.Component {
 
     this.state = {
       tea: {
+        id: "",
         name: "",
         brand: "",
         type: "",
@@ -21,10 +23,11 @@ class App extends React.Component {
       },
       teas: [
         {
-          name: "Darjeeling",
-          brand: "Twinnings",
-          type: "Black",
-          servings: 7
+          id: "",
+          name: "",
+          brand: "",
+          type: "",
+          servings: ""
         }
       ],
       types: ["Black", "Green", "White"],
@@ -32,7 +35,8 @@ class App extends React.Component {
       handleBrandChange: this.handleBrandChange,
       handleTypeChange: this.handleTypeChange,
       handleServingsChange: this.handleServingsChange,
-      handleFormSubmit: this.handleFormSubmit
+      handleFormSubmit: this.handleFormSubmit,
+      handleDelete: this.handleDelete
     };
   }
 
@@ -62,8 +66,19 @@ class App extends React.Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const newTea = [...this.state.teas, this.state.tea];
-    saveTeas(newTea);
+    const newTeaList = [
+      ...this.state.teas,
+      { ...this.state.tea, id: uuidv4() }
+    ];
+    saveTeas(newTeaList);
+    this.setState({ teas: loadTeas() });
+  };
+
+  handleDelete = (event, teaItem) => {
+    event.preventDefault();
+    const removeTea = this.state.teas.filter(tea => tea.id !== teaItem);
+    console.log("delete triggered ", event);
+    saveTeas(removeTea);
     this.setState({ teas: loadTeas() });
   };
 
