@@ -6,10 +6,10 @@ const NavBar = () => (
   <nav>
     <ul>
       <li>
-        <Link to={process.env.PUBLIC_URL + '/'}>Home</Link>
+        <Link to={"/"}>Home</Link>
       </li>
       <li>
-        <Link to={process.env.PUBLIC_URL + '/demo'}>Demo</Link>
+        <Link to={"/tea"}>Tea</Link>
       </li>
       <li>
         <a href="https://github.com/jenniferlynparsons/succinct-react-starter">
