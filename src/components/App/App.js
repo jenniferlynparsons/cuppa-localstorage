@@ -64,6 +64,7 @@ class App extends React.Component {
     event.preventDefault();
     const newTea = [...this.state.teas, this.state.tea];
     saveTeas(newTea);
+    this.setState({ teas: loadTeas() });
   };
 
   componentDidMount() {
