@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import React from "react";
-// import { Router } from "@reach/router";
+import { Router } from "@reach/router";
 import NavBar from "../NavBar";
-import Tea from "../Tea";
+import TeaEditor from "../TeaEditor";
 import TeaList from "../TeaList";
 import Footer from "../Footer";
 import "../../common_styles/global.scss";
@@ -12,11 +12,18 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      tea: {
+        name: "",
+        brand: "",
+        type: "",
+        servings: ""
+      },
       teas: [
         {
-          id: 1,
-          name: "Test tea",
-          quantity: 7
+          name: "Darjeeling",
+          brand: "Twinnings",
+          type: "Black",
+          servings: 7
         }
       ],
       types: ["Black", "Green", "White"],
@@ -30,26 +37,32 @@ class App extends React.Component {
 
   handleNameChange = event => {
     this.setState({
-      name: event.target.value
+      tea: { name: event.target.value }
     });
   };
 
   handleBrandChange = event => {
     this.setState({
-      brand: event.target.value
+      tea: { brand: event.target.value }
     });
   };
 
   handleTypeChange = event => {
     this.setState({
-      type: event.target.value
+      tea: { type: event.target.value }
     });
   };
 
   handleServingsChange = event => {
     this.setState({
-      servings: event.target.value
+      tea: { servings: event.target.value }
     });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    console.log("submit triggered");
+    console.log(this.state.tea);
   };
 
   render() {
@@ -57,8 +70,10 @@ class App extends React.Component {
       <div>
         <NavBar />
         <main>
-          <Tea {...this.state} />
-          <TeaList {...this.state} />
+          <Router>
+            <TeaList {...this.state} path="/" />
+            <TeaEditor {...this.state} path="/new-tea" />
+          </Router>
         </main>
         <Footer />
       </div>

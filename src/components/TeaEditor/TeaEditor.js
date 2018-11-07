@@ -1,30 +1,17 @@
 /* eslint-disable no-console */
 import React from "react";
 
-class Tea extends React.Component {
-  state = {
-    name: "",
-    brand: "",
-    type: "",
-    servings: ""
-  };
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-    console.log("submit triggered");
-    console.log(this.state);
-  };
-
+class TeaEditor extends React.Component {
   render() {
     return (
       <section>
-        <form onSubmit={this.handleFormSubmit}>
+        <form onSubmit={this.props.handleFormSubmit}>
           <label htmlFor="name">
             Tea Name
             <input
               id="name"
               onChange={this.props.handleNameChange}
-              value={this.state.name}
+              value={this.props.tea.name}
               placeholder="Tea Name"
             />
           </label>
@@ -33,7 +20,7 @@ class Tea extends React.Component {
             <input
               id="brand"
               onChange={this.props.handleBrandChange}
-              value={this.state.brand}
+              value={this.props.tea.brand}
               placeholder="Tea Brand"
             />
           </label>
@@ -42,7 +29,7 @@ class Tea extends React.Component {
             <select
               disabled={!this.props.types.length}
               id="type"
-              value={this.state.type}
+              value={this.props.tea.type}
               onChange={this.props.handleTypeChange}
               onBlur={this.props.handleTypeChange}
             >
@@ -59,7 +46,7 @@ class Tea extends React.Component {
             <input
               id="servings"
               onChange={this.props.handleServingsChange}
-              value={this.state.servings}
+              value={this.props.tea.servings}
               placeholder="Servings Available"
             />
           </label>
@@ -70,4 +57,4 @@ class Tea extends React.Component {
   }
 }
 
-export default Tea;
+export default TeaEditor;

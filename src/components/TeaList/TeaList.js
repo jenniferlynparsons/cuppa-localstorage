@@ -9,15 +9,19 @@ class TeaList extends React.Component {
             <tr>
               <td>Tea Name</td>
               <td>Quantity</td>
-              <td>Edit</td>
+              <td />
+              <td />
             </tr>
           </thead>
           <tbody>
             {this.props.teas.map(tea => {
               return (
-                <tr key={tea.id}>
+                <tr key={tea.name + tea.brand}>
                   <td>{tea.name}</td>
-                  <td>{tea.quantity}</td>
+                  <td>{tea.servings}</td>
+                  <td>
+                    <a href="/">Details</a>
+                  </td>
                   <td>
                     <a href="/">Edit</a>
                   </td>

@@ -9,12 +9,7 @@ const NavBar = () => (
         <Link to={"/"}>Home</Link>
       </li>
       <li>
-        <Link to={"/tea"}>Tea</Link>
-      </li>
-      <li>
-        <a href="https://github.com/jenniferlynparsons/succinct-react-starter">
-          Download
-        </a>
+        <Link to={"/new-tea"}>Add a Tea</Link>
       </li>
     </ul>
   </nav>
