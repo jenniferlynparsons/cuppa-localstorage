@@ -4,13 +4,12 @@ import { Link } from "@reach/router";
 class TeaList extends React.Component {
   render() {
     return (
-      <section>
-        <table>
+      <div className="container">
+        <table className="table is-striped is-fullwidth">
           <thead>
             <tr>
-              <td>Tea Name</td>
+              <td>Name</td>
               <td>Quantity</td>
-              <td />
               <td />
               <td />
             </tr>
@@ -19,16 +18,16 @@ class TeaList extends React.Component {
             {this.props.teas.map(tea => {
               return (
                 <tr key={tea.id}>
-                  <td>{tea.name}</td>
-                  <td>{tea.servings}</td>
                   <td>
-                    <Link to={"tea/" + tea.id}>Details</Link>
+                    <Link to={"tea/" + tea.id}>{tea.name}</Link>
                   </td>
+                  <td>{tea.servings}</td>
                   <td>
                     <a href="/">Edit</a>
                   </td>
                   <td>
                     <button
+                      className="button is-danger is-small"
                       onClick={() => this.props.handleDelete(event, tea.id)}
                     >
                       X
@@ -39,7 +38,7 @@ class TeaList extends React.Component {
             })}
           </tbody>
         </table>
-      </section>
+      </div>
     );
   }
 }

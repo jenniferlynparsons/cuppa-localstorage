@@ -1,17 +1,31 @@
 import React from "react";
 import { Link } from "@reach/router";
 import "./NavBar.scss";
+import tea from "../../common_styles/tea.svg";
 
 const NavBar = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link to={"/"}>Home</Link>
-      </li>
-      <li>
-        <Link to={"/new-tea"}>Add a Tea</Link>
-      </li>
-    </ul>
+  <nav
+    className="navbar is-dark"
+    role="navigation"
+    aria-label="main navigation"
+  >
+    <div className="navbar-brand">
+      <Link className="navbar-item" to={"/"}>
+        <img src={tea} width="90" alt="Cuppa logo" />
+      </Link>
+    </div>
+    <div className="navbar-menu is-active">
+      <div className="navbar-start" />
+      <div className="navbar-end">
+        <ul>
+          <li>
+            <Link className="button is-primary" to={"/new-tea"}>
+              Add a Tea
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
 );
 

@@ -24,15 +24,22 @@ class TeaDetails extends React.Component {
   }
   render() {
     return (
-      <section>
-        <p>Tea Name: {this.state.name}</p>
-        <p>Tea Brand: {this.state.brand}</p>
-        <p>Type: {this.state.type}</p>
-        <p>
-          Servings Available:
-          {this.state.servings}
-        </p>
-      </section>
+      <div className="container content">
+        <h1>{this.state.name}</h1>
+        <ul>
+          <li>
+            <span className="has-text-grey-light">Brand:</span>{" "}
+            {this.state.brand}
+          </li>
+          <li>
+            <span className="has-text-grey-light">Type:</span> {this.state.type}
+          </li>
+          <li>
+            <span className="has-text-grey-light">Servings:</span>{" "}
+            {this.state.servings}
+          </li>
+        </ul>
+      </div>
     );
   }
 }

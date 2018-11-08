@@ -8,6 +8,7 @@ import TeaEditor from "../TeaEditor";
 import TeaList from "../TeaList";
 import TeaDetails from "../TeaDetails";
 import Footer from "../Footer";
+import "../../../node_modules/bulma/bulma.sass";
 import "../../common_styles/global.scss";
 
 class App extends React.Component {
@@ -96,13 +97,13 @@ class App extends React.Component {
     return (
       <div>
         <NavBar />
-        <main>
+        <section className="section">
           <Router>
             <TeaList {...this.state} path="/" />
             <TeaEditor {...this.state} path="/new-tea" />
             <TeaDetails {...this.state} path="/tea/:id" />
           </Router>
-        </main>
+        </section>
         <Footer />
       </div>
     );
