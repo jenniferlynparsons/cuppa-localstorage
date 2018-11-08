@@ -6,6 +6,7 @@ import { saveTeas, loadTeas } from "../../storage";
 import NavBar from "../NavBar";
 import TeaEditor from "../TeaEditor";
 import TeaList from "../TeaList";
+import TeaDetails from "../TeaDetails";
 import Footer from "../Footer";
 import "../../common_styles/global.scss";
 
@@ -36,7 +37,8 @@ class App extends React.Component {
       handleTypeChange: this.handleTypeChange,
       handleServingsChange: this.handleServingsChange,
       handleFormSubmit: this.handleFormSubmit,
-      handleDelete: this.handleDelete
+      handleDelete: this.handleDelete,
+      getDetails: this.getDetails
     };
   }
 
@@ -82,6 +84,10 @@ class App extends React.Component {
     this.setState({ teas: loadTeas() });
   };
 
+  getDetails = teaID => {
+    return this.state.teas.filter(tea => tea.id === teaID);
+  };
+
   componentDidMount() {
     this.setState({ teas: loadTeas() });
   }
@@ -94,6 +100,7 @@ class App extends React.Component {
           <Router>
             <TeaList {...this.state} path="/" />
             <TeaEditor {...this.state} path="/new-tea" />
+            <TeaDetails {...this.state} path="/tea/:id" />
           </Router>
         </main>
         <Footer />

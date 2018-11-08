@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@reach/router";
 
 class TeaList extends React.Component {
   render() {
@@ -21,7 +22,7 @@ class TeaList extends React.Component {
                   <td>{tea.name}</td>
                   <td>{tea.servings}</td>
                   <td>
-                    <a href="/">Details</a>
+                    <Link to={"tea/" + tea.id}>Details</Link>
                   </td>
                   <td>
                     <a href="/">Edit</a>
