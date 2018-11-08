@@ -11,7 +11,7 @@ const NavBar = () => (
   >
     <div className="navbar-brand">
       <Link className="navbar-item" to={"/"}>
-        <img src={tea} width="90" alt="Cuppa logo" />
+        <img src={tea} alt="Cuppa logo" />
       </Link>
     </div>
     <div className="navbar-menu is-active">

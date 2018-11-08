@@ -74,7 +74,7 @@ class TeaEditor extends React.Component {
               </div>
             </label>
           </div>
-          <div class="control">
+          <div className="control">
             <button className="button is-primary">Submit</button>
           </div>
         </form>
