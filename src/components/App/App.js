@@ -67,20 +67,32 @@ class App extends React.Component {
     });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event, teaItem) => {
     event.preventDefault();
-    const newTeaList = [
-      ...this.state.teas,
-      { ...this.state.tea, id: uuidv4() }
-    ];
-    saveTeas(newTeaList);
+    if (teaItem.id === "") {
+      const newTeaList = [
+        ...this.state.teas,
+        { ...this.state.tea, id: uuidv4() }
+      ];
+      saveTeas(newTeaList);
+    } else {
+      const updatedTeaList = this.state.teas.map(item => {
+        if (teaItem.id === item.id) {
+          const updatedItem = this.state.tea;
+          return updatedItem;
+        } else {
+          return item;
+        }
+      });
+      saveTeas(updatedTeaList);
+    }
+
     this.setState({ teas: loadTeas() });
   };
 
   handleDelete = (event, teaItem) => {
     event.preventDefault();
     const removeTea = this.state.teas.filter(tea => tea.id !== teaItem);
-    console.log("delete triggered ", event);
     saveTeas(removeTea);
     this.setState({ teas: loadTeas() });
   };
@@ -100,7 +112,8 @@ class App extends React.Component {
         <section className="section">
           <Router>
             <TeaList {...this.state} path="/" />
-            <TeaEditor {...this.state} path="/new-tea" />
+            <TeaEditor {...this.state} path="/new-tea" key="add-tea" />
+            <TeaEditor {...this.state} path="/edit-tea/:id" key="edit-tea" />
             <TeaDetails {...this.state} path="/tea/:id" />
           </Router>
         </section>

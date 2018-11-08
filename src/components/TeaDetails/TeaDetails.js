@@ -16,7 +16,6 @@ class TeaDetails extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
     if (this.state.id !== prevProps.id) {
       const theTea = this.props.getDetails(this.props.id);
       this.setState(theTea[0]);

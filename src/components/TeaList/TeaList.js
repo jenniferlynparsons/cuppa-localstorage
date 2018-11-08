@@ -19,11 +19,11 @@ class TeaList extends React.Component {
               return (
                 <tr key={tea.id}>
                   <td>
-                    <Link to={"tea/" + tea.id}>{tea.name}</Link>
+                    <Link to={"/tea/" + tea.id}>{tea.name}</Link>
                   </td>
                   <td>{tea.servings}</td>
                   <td>
-                    <a href="/">Edit</a>
+                  <Link to={"/edit-tea/" + tea.id}>Edit</Link>
                   </td>
                   <td>
                     <button
