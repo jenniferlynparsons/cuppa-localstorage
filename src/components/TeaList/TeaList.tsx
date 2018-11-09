@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "@reach/router";
+import { Props } from "../../interfaces";
 
-class TeaList extends React.Component {
+class TeaList extends React.Component<Props, {}> {
   render() {
     return (
       <div className="container">
@@ -28,7 +29,7 @@ class TeaList extends React.Component {
                   <td>
                     <button
                       className="button is-danger is-small"
-                      onClick={() => this.props.handleDelete(event, tea.id)}
+                      onClick={this.props.handleDelete}
                     >
                       X
                     </button>

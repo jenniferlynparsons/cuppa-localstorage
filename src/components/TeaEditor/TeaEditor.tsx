@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React from "react";
+import { Props } from "../../interfaces";
 
-class TeaEditor extends React.Component {
+class TeaEditor extends React.Component<Props, {}> {
   render() {
     return (
       <div className="container">

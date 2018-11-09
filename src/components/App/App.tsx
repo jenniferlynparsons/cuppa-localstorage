@@ -10,9 +10,10 @@ import TeaDetails from "../TeaDetails";
 import Footer from "../Footer";
 import "../../../node_modules/bulma/bulma.sass";
 import "../../common_styles/global.scss";
+import { Props, State } from "../../interfaces";
 
-class App extends React.Component {
-  constructor(props) {
+class App extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -32,6 +33,7 @@ class App extends React.Component {
           servings: ""
         }
       ],
+      id: "",
       types: ["Black", "Green", "White"],
       handleNameChange: this.handleNameChange,
       handleBrandChange: this.handleBrandChange,
@@ -43,31 +45,31 @@ class App extends React.Component {
     };
   }
 
-  handleNameChange = event => {
+  handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
       tea: { ...this.state.tea, name: event.target.value }
     });
   };
 
-  handleBrandChange = event => {
+  handleBrandChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
       tea: { ...this.state.tea, brand: event.target.value }
     });
   };
 
-  handleTypeChange = event => {
+  handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({
       tea: { ...this.state.tea, type: event.target.value }
     });
   };
 
-  handleServingsChange = event => {
+  handleServingsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
       tea: { ...this.state.tea, servings: event.target.value }
     });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newTeaList = [
       ...this.state.teas,
@@ -77,7 +79,7 @@ class App extends React.Component {
     this.setState({ teas: loadTeas() });
   };
 
-  handleDelete = (event, teaItem) => {
+  handleDelete = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const removeTea = this.state.teas.filter(tea => tea.id !== teaItem);
     console.log("delete triggered ", event);
@@ -85,7 +87,7 @@ class App extends React.Component {
     this.setState({ teas: loadTeas() });
   };
 
-  getDetails = teaID => {
+  getDetails = (teaID: string) => {
     return this.state.teas.filter(tea => tea.id === teaID);
   };
 

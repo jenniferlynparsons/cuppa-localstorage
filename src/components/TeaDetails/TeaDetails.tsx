@@ -1,13 +1,26 @@
 /* eslint-disable no-console */
 import React from "react";
+import { Props } from "../../interfaces";
 
-class TeaDetails extends React.Component {
+interface State {
+  tea: {
+    id: string;
+    name: string;
+    brand: string;
+    type: string;
+    servings: string;
+  };
+}
+
+class TeaDetails extends React.Component<Props, State> {
   state = {
-    id: "",
-    name: "",
-    brand: "",
-    type: "",
-    servings: ""
+    tea: {
+      id: "",
+      name: "",
+      brand: "",
+      type: "",
+      servings: ""
+    }
   };
 
   componentDidMount() {
@@ -15,9 +28,8 @@ class TeaDetails extends React.Component {
     this.setState(theTea[0]);
   }
 
-  componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
-    if (this.state.id !== prevProps.id) {
+  componentDidUpdate(prevProps: object) {
+    if (this.state.tea.id !== prevProps.id) {
       const theTea = this.props.getDetails(this.props.id);
       this.setState(theTea[0]);
     }
@@ -25,18 +37,19 @@ class TeaDetails extends React.Component {
   render() {
     return (
       <div className="container content">
-        <h1>{this.state.name}</h1>
+        <h1>{this.state.tea.name}</h1>
         <ul>
           <li>
             <span className="has-text-grey-light">Brand:</span>{" "}
-            {this.state.brand}
+            {this.state.tea.brand}
           </li>
           <li>
-            <span className="has-text-grey-light">Type:</span> {this.state.type}
+            <span className="has-text-grey-light">Type:</span>{" "}
+            {this.state.tea.type}
           </li>
           <li>
             <span className="has-text-grey-light">Servings:</span>{" "}
-            {this.state.servings}
+            {this.state.tea.servings}
           </li>
         </ul>
       </div>
