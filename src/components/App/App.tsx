@@ -2,7 +2,10 @@
 import React from "react";
 import uuidv4 from "uuid/v4";
 import { Router } from "@reach/router";
+import { Provider as ReduxProvider } from "react-redux";
 import { saveTeas, loadTeas } from "../../storage";
+import { Props, State } from "../../interfaces";
+import store from "../../store";
 import NavBar from "../NavBar";
 import TeaEditor from "../TeaEditor";
 import TeaList from "../TeaList";
@@ -10,7 +13,6 @@ import TeaDetails from "../TeaDetails";
 import Footer from "../Footer";
 import "../../../node_modules/bulma/bulma.sass";
 import "../../common_styles/global.scss";
-import { Props, State } from "../../interfaces";
 
 class App extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -100,11 +102,13 @@ class App extends React.Component<Props, State> {
       <div>
         <NavBar />
         <section className="section">
-          <Router>
-            <TeaList {...this.state} path="/" />
-            <TeaEditor {...this.state} path="/new-tea" />
-            <TeaDetails {...this.state} path="/tea/:id" />
-          </Router>
+          <ReduxProvider store={store}>
+            <Router>
+              <TeaList {...this.state} path="/" />
+              <TeaEditor {...this.state} path="/new-tea" />
+              <TeaDetails {...this.state} path="/tea/:id" />
+            </Router>
+          </ReduxProvider>
         </section>
         <Footer />
       </div>
