@@ -2,7 +2,7 @@
 import React from "react";
 import uuidv4 from "uuid/v4";
 import { Router } from "@reach/router";
-import { Provider as ReduxProvider } from "react-redux";
+import { Provider } from "react-redux";
 import { saveTeas, loadTeas } from "../../storage";
 import { Props, State } from "../../interfaces";
 import store from "../../store";
@@ -102,13 +102,13 @@ class App extends React.Component<Props, State> {
       <div>
         <NavBar />
         <section className="section">
-          <ReduxProvider store={store}>
+          <Provider store={store}>
             <Router>
               <TeaList {...this.state} path="/" />
               <TeaEditor {...this.state} path="/new-tea" />
               <TeaDetails {...this.state} path="/tea/:id" />
             </Router>
-          </ReduxProvider>
+          </Provider>
         </section>
         <Footer />
       </div>
