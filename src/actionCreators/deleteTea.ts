@@ -1,3 +1,11 @@
-export default function deleteTea(tea) {
-  return { type: "DELETE_TEA", payload: tea };
+import { Tea } from "../interfaces";
+
+interface DeleteTea {
+  type: "DELETE_TEA";
+  payload: Tea;
 }
+
+export const deleteTea = (tea: Tea): DeleteTea => ({
+  type: "DELETE_TEA",
+  payload: tea
+});

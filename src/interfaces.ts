@@ -1,6 +1,6 @@
 import { RouteComponentProps } from "@reach/router";
 
-interface Tea {
+export interface Tea {
   id: string;
   name: string;
   brand: string;
@@ -24,7 +24,7 @@ export interface Props extends RouteComponentProps {
   handleTypeChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   handleServingsChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleFormSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  handleDelete: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDelete: (event: React.MouseEvent<HTMLButtonElement>) => void;
   getDetails: (id: string) => void;
 }
 
