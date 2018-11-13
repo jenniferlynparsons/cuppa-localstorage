@@ -1,8 +1,16 @@
 import React from "react";
 import { Link } from "@reach/router";
-import { Props } from "../../interfaces";
+import { connect } from "react-redux";
+import { Props, State } from "../../interfaces";
+// import { saveTeas } from "../../storage";
 
-class TeaList extends React.Component<Props, {}> {
+class TeaList extends React.Component<Props> {
+  handleDelete = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    // const removeTea = this.props.teas.filter(tea => tea.id !== teaItem);
+    console.log("delete triggered ", event);
+    // saveTeas(removeTea);
+  };
   render() {
     return (
       <div className="container">
@@ -29,7 +37,7 @@ class TeaList extends React.Component<Props, {}> {
                   <td>
                     <button
                       className="button is-danger is-small"
-                      onClick={this.props.handleDelete}
+                      onClick={this.handleDelete}
                     >
                       X
                     </button>
@@ -44,4 +52,8 @@ class TeaList extends React.Component<Props, {}> {
   }
 }
 
-export default TeaList;
+const mapStateToProps = (state: State) => ({
+  teas: state.teas
+});
+
+export default connect(mapStateToProps)(TeaList);

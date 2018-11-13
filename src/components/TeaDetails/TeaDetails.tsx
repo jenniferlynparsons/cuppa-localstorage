@@ -1,55 +1,25 @@
 /* eslint-disable no-console */
 import React from "react";
-import { Props } from "../../interfaces";
+import { connect } from "react-redux";
+import { State, Props, Tea } from "../../interfaces";
 
-interface State {
-  tea: {
-    id: string;
-    name: string;
-    brand: string;
-    type: string;
-    servings: string;
-  };
-}
-
-class TeaDetails extends React.Component<Props, State> {
-  state = {
-    tea: {
-      id: "",
-      name: "",
-      brand: "",
-      type: "",
-      servings: ""
-    }
-  };
-
-  componentDidMount() {
-    const theTea = this.props.getDetails(this.props.id);
-    this.setState(theTea[0]);
-  }
-
-  componentDidUpdate(prevProps: object) {
-    if (this.state.tea.id !== prevProps.id) {
-      const theTea = this.props.getDetails(this.props.id);
-      this.setState(theTea[0]);
-    }
-  }
+class TeaDetails extends React.Component<Props> {
   render() {
     return (
       <div className="container content">
-        <h1>{this.state.tea.name}</h1>
+        <h1>{this.props.tea.name}</h1>
         <ul>
           <li>
             <span className="has-text-grey-light">Brand:</span>{" "}
-            {this.state.tea.brand}
+            {this.props.tea.brand}
           </li>
           <li>
             <span className="has-text-grey-light">Type:</span>{" "}
-            {this.state.tea.type}
+            {this.props.tea.type}
           </li>
           <li>
             <span className="has-text-grey-light">Servings:</span>{" "}
-            {this.state.tea.servings}
+            {this.props.tea.servings}
           </li>
         </ul>
       </div>
@@ -57,4 +27,9 @@ class TeaDetails extends React.Component<Props, State> {
   }
 }
 
-export default TeaDetails;
+const mapStateToProps = (state: State, ownProps: Tea) => ({
+  tea: state.teas.find(tea => tea.id === ownProps.id)
+});
+
+export default connect(mapStateToProps)(TeaDetails);
+// calls store.getState

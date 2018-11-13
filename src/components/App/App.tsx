@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import React from "react";
-import uuidv4 from "uuid/v4";
 import { Router } from "@reach/router";
 import { Provider } from "react-redux";
 import { saveTeas, loadTeas } from "../../storage";
@@ -19,13 +18,6 @@ class App extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      tea: {
-        id: "",
-        name: "",
-        brand: "",
-        type: "",
-        servings: ""
-      },
       teas: [
         {
           id: "",
@@ -36,66 +28,18 @@ class App extends React.Component<Props, State> {
         }
       ],
       id: "",
-      types: ["Black", "Green", "White"],
-      handleNameChange: this.handleNameChange,
-      handleBrandChange: this.handleBrandChange,
-      handleTypeChange: this.handleTypeChange,
-      handleServingsChange: this.handleServingsChange,
-      handleFormSubmit: this.handleFormSubmit,
-      handleDelete: this.handleDelete,
-      getDetails: this.getDetails
+      types: ["Black", "Green", "White"]
     };
   }
 
-  handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      tea: { ...this.state.tea, name: event.target.value }
-    });
-  };
+  // componentDidMount() {
+  //   this.setState({ teas: loadTeas() });
+  // }
 
-  handleBrandChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      tea: { ...this.state.tea, brand: event.target.value }
-    });
-  };
-
-  handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({
-      tea: { ...this.state.tea, type: event.target.value }
-    });
-  };
-
-  handleServingsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      tea: { ...this.state.tea, servings: event.target.value }
-    });
-  };
-
-  handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const newTeaList = [
-      ...this.state.teas,
-      { ...this.state.tea, id: uuidv4() }
-    ];
-    saveTeas(newTeaList);
-    this.setState({ teas: loadTeas() });
-  };
-
-  handleDelete = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    const removeTea = this.state.teas.filter(tea => tea.id !== teaItem);
-    console.log("delete triggered ", event);
-    saveTeas(removeTea);
-    this.setState({ teas: loadTeas() });
-  };
-
-  getDetails = (teaID: string) => {
-    return this.state.teas.filter(tea => tea.id === teaID);
-  };
-
-  componentDidMount() {
-    this.setState({ teas: loadTeas() });
-  }
+  // tslint:disable-next-line:no-unused-expression
+  // store.subscribe(()=>{
+  //   saveTeas(store.getState())
+  // })
 
   render() {
     return (
@@ -104,9 +48,9 @@ class App extends React.Component<Props, State> {
         <section className="section">
           <Provider store={store}>
             <Router>
-              <TeaList {...this.state} path="/" />
-              <TeaEditor {...this.state} path="/new-tea" />
-              <TeaDetails {...this.state} path="/tea/:id" />
+              <TeaList path="/" />
+              <TeaEditor path="/new-tea" />
+              <TeaDetails path="/tea/:id" />
             </Router>
           </Provider>
         </section>

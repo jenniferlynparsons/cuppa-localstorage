@@ -1,9 +1,9 @@
-import { createStore, compose, applyMiddleware } from "redux";
+import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import reducer from "./reducers";
+import teas from "./reducers/teasReducer";
 
 const store = createStore(
-  reducer,
+  combineReducers({ teas }),
   compose(
     applyMiddleware(thunk),
     typeof window === "object" &&
