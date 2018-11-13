@@ -131,7 +131,6 @@ const mapStateToProps = (state: State) => ({
 const mapDispatchToProps = (dispatch: any) => ({
   return: {
     handleSubmit: () => {
-      console.log("working");
       dispatch("ADD_TEA");
     }
   }
