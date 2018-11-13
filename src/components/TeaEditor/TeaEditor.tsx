@@ -2,17 +2,9 @@
 import React from "react";
 import uuidv4 from "uuid/v4";
 import { connect } from "react-redux";
-import { Props, State, Tea } from "../../interfaces";
+import { Props, State } from "../../interfaces";
 
-class TeaEditor extends React.Component<Props, Tea> {
-  state = {
-    id: "",
-    name: "",
-    brand: "",
-    type: "",
-    servings: ""
-  };
-
+class TeaEditor extends React.Component<Props, {}> {
   handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
       ...this.state,
@@ -41,17 +33,16 @@ class TeaEditor extends React.Component<Props, Tea> {
     });
   };
 
-  handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // const newTeaList = [
-    //   ...this.state.teas,
-    //   { ...this.state.tea, id: uuidv4() }
-    // ];
-    // saveTeas(newTeaList);
-  };
+  // handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   // const newTeaList = [
+  //   //   ...this.state.teas,
+  //   //   { ...this.state.tea, id: uuidv4() }
+  //   // ];
+  //   // saveTeas(newTeaList);
+  // };
 
   render() {
-    console.log(this.props.types);
     return (
       <div className="container">
         <form onSubmit={this.handleFormSubmit}>
@@ -91,14 +82,14 @@ class TeaEditor extends React.Component<Props, Tea> {
               <div className="control">
                 <div className="select">
                   <select
-                    disabled={!this.props.types.length}
+                    disabled={!this.props.teaTypes.length}
                     id="type"
-                    value={this.props.tea.type}
+                    value={this.props.tea.teaType}
                     onChange={this.handleTypeChange}
                     onBlur={this.handleTypeChange}
                   >
                     <option />
-                    {this.props.types.map(type => (
+                    {this.props.teaTypes.map(type => (
                       <option key={type} value={type}>
                         {type}
                       </option>
@@ -134,12 +125,15 @@ class TeaEditor extends React.Component<Props, Tea> {
 
 const mapStateToProps = (state: State) => ({
   tea: state.teas,
-  types: state.types
+  teaTypes: state.teaTypes
 });
 
-const mapDispatchToProps = () => ({
-  handleSubmit: () => {
-    dispatch("ADD_TEA");
+const mapDispatchToProps = (dispatch: any) => ({
+  return: {
+    handleSubmit: () => {
+      console.log("working");
+      dispatch("ADD_TEA");
+    }
   }
 });
 
