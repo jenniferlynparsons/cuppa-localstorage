@@ -3,6 +3,7 @@ import React from "react";
 import uuidv4 from "uuid/v4";
 import { connect } from "react-redux";
 import { Props, State } from "../../interfaces";
+import { addTea } from "../../actions";
 
 class TeaEditor extends React.Component<Props, {}> {
   handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,19 +34,19 @@ class TeaEditor extends React.Component<Props, {}> {
     });
   };
 
-  // handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   // const newTeaList = [
-  //   //   ...this.state.teas,
-  //   //   { ...this.state.tea, id: uuidv4() }
-  //   // ];
-  //   // saveTeas(newTeaList);
-  // };
+  handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // const newTeaList = [
+    //   ...this.state.teas,
+    //   { ...this.state.tea, id: uuidv4() }
+    // ];
+    // saveTeas(newTeaList);
+  };
 
   render() {
     return (
       <div className="container">
-        <form onSubmit={this.handleFormSubmit}>
+        <form onSubmit={this.props.handleSubmit}>
           <div className="field">
             <label htmlFor="name">
               Tea Name
@@ -131,7 +132,8 @@ const mapStateToProps = (state: State) => ({
 const mapDispatchToProps = (dispatch: any) => ({
   return: {
     handleSubmit: () => {
-      dispatch("ADD_TEA");
+      console.log("working");
+      dispatch(addTea);
     }
   }
 });
