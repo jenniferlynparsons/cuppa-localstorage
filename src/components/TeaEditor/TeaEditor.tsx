@@ -52,7 +52,7 @@ class TeaEditor extends React.Component<Props, Tea> {
   handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(this.state);
-    this.props.handleSubmit();
+    this.props.handleSubmit(this.state);
   };
 
   render() {
@@ -147,8 +147,8 @@ const mapStateToProps = (state: State) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  handleSubmit: () => {
-    dispatch(addTea(this.state));
+  handleSubmit: (tea: any) => {
+    dispatch(addTea(tea));
   }
 });
 
