@@ -2,10 +2,18 @@
 import React from "react";
 import uuidv4 from "uuid/v4";
 import { connect } from "react-redux";
-import { Props, State } from "../../interfaces";
+import { Props, State, Tea } from "../../interfaces";
 import { addTea } from "../../actions";
 
-class TeaEditor extends React.Component<Props, {}> {
+class TeaEditor extends React.Component<Props, Tea> {
+  state = {
+    id: "",
+    name: "",
+    brand: "",
+    teaType: "",
+    servings: ""
+  };
+
   handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
       ...this.state,
@@ -23,7 +31,7 @@ class TeaEditor extends React.Component<Props, {}> {
   handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({
       ...this.state,
-      type: event.target.value
+      teaType: event.target.value
     });
   };
 
@@ -36,6 +44,8 @@ class TeaEditor extends React.Component<Props, {}> {
 
   handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log(this.props);
+    this.props.handleSubmit();
     // const newTeaList = [
     //   ...this.state.teas,
     //   { ...this.state.tea, id: uuidv4() }
@@ -46,7 +56,7 @@ class TeaEditor extends React.Component<Props, {}> {
   render() {
     return (
       <div className="container">
-        <form onSubmit={this.props.handleSubmit}>
+        <form onSubmit={this.handleFormSubmit}>
           <div className="field">
             <label htmlFor="name">
               Tea Name
@@ -130,11 +140,8 @@ const mapStateToProps = (state: State) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  return: {
-    handleSubmit: () => {
-      console.log("working");
-      dispatch(addTea);
-    }
+  handleSubmit: () => {
+    dispatch(addTea);
   }
 });
 

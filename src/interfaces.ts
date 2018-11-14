@@ -4,7 +4,7 @@ export interface Tea {
   id: string;
   name: string;
   brand: string;
-  teaType: TeaTypes;
+  teaType: string;
   servings: string;
 }
 
@@ -15,7 +15,7 @@ export interface Props extends RouteComponentProps {
     id: string;
     name: string;
     brand: string;
-    teaType: string[];
+    teaType: string;
     servings: string;
   };
   teas: Tea[];
