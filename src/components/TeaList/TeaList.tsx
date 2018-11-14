@@ -5,13 +5,14 @@ import { Props, State } from "../../interfaces";
 // import { saveTeas } from "../../storage";
 
 class TeaList extends React.Component<Props> {
-  handleDelete = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    // const removeTea = this.props.teas.filter(tea => tea.id !== teaItem);
-    console.log("delete triggered ", event);
-    // saveTeas(removeTea);
-  };
+  // handleDelete = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   event.preventDefault();
+  //   // const removeTea = this.props.teas.filter(tea => tea.id !== teaItem);
+  //   console.log("delete triggered ", event);
+  //   // saveTeas(removeTea);
+  // };
   render() {
+    // console.log("props ", this.props);
     return (
       <div className="container">
         <table className="table is-striped is-fullwidth">
@@ -37,7 +38,7 @@ class TeaList extends React.Component<Props> {
                   <td>
                     <button
                       className="button is-danger is-small"
-                      onClick={this.handleDelete}
+                      // onClick={this.handleDelete}
                     >
                       X
                     </button>

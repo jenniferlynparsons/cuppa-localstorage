@@ -42,15 +42,17 @@ class TeaEditor extends React.Component<Props, Tea> {
     });
   };
 
+  handleSubmitButton = () => {
+    this.setState({
+      ...this.state,
+      id: uuidv4()
+    });
+  };
+
   handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(this.props);
+    console.log(this.state);
     this.props.handleSubmit();
-    // const newTeaList = [
-    //   ...this.state.teas,
-    //   { ...this.state.tea, id: uuidv4() }
-    // ];
-    // saveTeas(newTeaList);
   };
 
   render() {
@@ -126,7 +128,12 @@ class TeaEditor extends React.Component<Props, Tea> {
             </label>
           </div>
           <div className="control">
-            <button className="button is-primary">Submit</button>
+            <button
+              className="button is-primary"
+              onClick={this.handleSubmitButton}
+            >
+              Submit
+            </button>
           </div>
         </form>
       </div>
@@ -141,7 +148,7 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   handleSubmit: () => {
-    dispatch(addTea);
+    dispatch(addTea(this.state));
   }
 });
 

@@ -10,17 +10,15 @@ export interface Tea {
 
 export type TeaTypes = string[];
 
+export type Teas = Tea[];
+
 export interface Props extends RouteComponentProps {
-  tea: {
-    id: string;
-    name: string;
-    brand: string;
-    teaType: string;
-    servings: string;
-  };
+  tea: Tea;
   teas: Tea[];
   teaTypes: TeaTypes;
   id: string;
+
+  handleSubmit: () => void;
 }
 
 export interface State {
