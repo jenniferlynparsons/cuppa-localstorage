@@ -51,7 +51,6 @@ class TeaEditor extends React.Component<Props, Tea> {
 
   handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(this.state);
     this.props.handleSubmit(this.state);
   };
 

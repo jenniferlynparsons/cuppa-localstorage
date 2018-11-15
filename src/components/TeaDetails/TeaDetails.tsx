@@ -15,7 +15,7 @@ class TeaDetails extends React.Component<Props> {
           </li>
           <li>
             <span className="has-text-grey-light">Type:</span>{" "}
-            {this.props.tea.type}
+            {this.props.tea.teaType}
           </li>
           <li>
             <span className="has-text-grey-light">Servings:</span>{" "}

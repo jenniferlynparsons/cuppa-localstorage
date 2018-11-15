@@ -1,24 +1,23 @@
 import React from "react";
 import { Link } from "@reach/router";
 import { connect } from "react-redux";
-import { Props, State } from "../../interfaces";
-// import { saveTeas } from "../../storage";
+import { Props, State, Tea } from "../../interfaces";
+import { deleteTea } from "../../actions";
 
 class TeaList extends React.Component<Props> {
-  // handleDelete = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   event.preventDefault();
-  //   // const removeTea = this.props.teas.filter(tea => tea.id !== teaItem);
-  //   console.log("delete triggered ", event);
-  //   // saveTeas(removeTea);
-  // };
+  handleDeleteClick = (tea: Tea) => {
+    this.props.handleDelete(tea);
+  };
+
   render() {
-    // console.log("props ", this.props);
     return (
       <div className="container">
         <table className="table is-striped is-fullwidth">
           <thead>
             <tr>
               <td>Name</td>
+              <td>Brand</td>
+              <td>Type</td>
               <td>Quantity</td>
               <td />
               <td />
@@ -31,6 +30,8 @@ class TeaList extends React.Component<Props> {
                   <td>
                     <Link to={"tea/" + tea.id}>{tea.name}</Link>
                   </td>
+                  <td>{tea.brand}</td>
+                  <td>{tea.teaType}</td>
                   <td>{tea.servings}</td>
                   <td>
                     <a href="/">Edit</a>
@@ -38,7 +39,7 @@ class TeaList extends React.Component<Props> {
                   <td>
                     <button
                       className="button is-danger is-small"
-                      // onClick={this.handleDelete}
+                      onClick={() => this.handleDeleteClick(tea)}
                     >
                       X
                     </button>
@@ -54,7 +55,17 @@ class TeaList extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: State) => ({
-  teas: state.teas
+  teas: state.teas,
+  teaTypes: state.teaTypes
 });
 
-export default connect(mapStateToProps)(TeaList);
+const mapDispatchToProps = (dispatch: any) => ({
+  handleDelete: (tea: any) => {
+    dispatch(deleteTea(tea));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TeaList);

@@ -18,7 +18,8 @@ export interface Props extends RouteComponentProps {
   teaTypes: TeaTypes;
   id: string;
 
-  handleSubmit: () => void;
+  handleSubmit: (tea: Tea) => void;
+  handleDelete: (tea: Tea) => void;
 }
 
 export interface State {
