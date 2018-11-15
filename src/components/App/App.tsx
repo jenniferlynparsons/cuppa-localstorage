@@ -22,6 +22,7 @@ class App extends React.Component<Props, State> {
             <Router>
               <TeaList path="/" />
               <TeaEditor path="/new-tea" />
+              <TeaEditor path="/edit-tea/:id" />
               <TeaDetails path="/tea/:id" />
             </Router>
           </Provider>

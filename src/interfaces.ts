@@ -6,6 +6,7 @@ export interface Tea {
   brand: string;
   teaType: string;
   servings: string;
+  edit: boolean;
 }
 
 export type TeaTypes = string[];

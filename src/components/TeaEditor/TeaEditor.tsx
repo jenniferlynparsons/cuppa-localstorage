@@ -3,7 +3,7 @@ import React from "react";
 import uuidv4 from "uuid/v4";
 import { connect } from "react-redux";
 import { Props, State, Tea } from "../../interfaces";
-import { addTea } from "../../actions";
+import { addTea, editTea } from "../../actions";
 
 class TeaEditor extends React.Component<Props, Tea> {
   state = {
@@ -11,7 +11,8 @@ class TeaEditor extends React.Component<Props, Tea> {
     name: "",
     brand: "",
     teaType: "",
-    servings: ""
+    servings: "",
+    edit: false
   };
 
   handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,16 +44,27 @@ class TeaEditor extends React.Component<Props, Tea> {
   };
 
   handleSubmitButton = () => {
-    this.setState({
-      ...this.state,
-      id: uuidv4()
-    });
+    if (!this.state.id) {
+      this.setState({
+        ...this.state,
+        id: uuidv4()
+      });
+    }
   };
 
   handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     this.props.handleSubmit(this.state);
+    this.setState({ ...this.state, edit: false });
   };
+
+  componentDidMount() {
+    if (this.props.id) {
+      const filterTeas = this.props.teas.filter(t => t.id === this.props.id);
+      const currentTea = { ...filterTeas[0] };
+      this.setState({ ...currentTea });
+    }
+  }
 
   render() {
     return (
@@ -67,7 +79,7 @@ class TeaEditor extends React.Component<Props, Tea> {
                   type="text"
                   id="name"
                   onChange={this.handleNameChange}
-                  value={this.props.tea.name}
+                  value={this.state.name}
                   placeholder="Tea Name"
                 />
               </div>
@@ -82,7 +94,7 @@ class TeaEditor extends React.Component<Props, Tea> {
                   type="text"
                   id="brand"
                   onChange={this.handleBrandChange}
-                  value={this.props.tea.brand}
+                  value={this.state.brand}
                   placeholder="Tea Brand"
                 />
               </div>
@@ -96,7 +108,7 @@ class TeaEditor extends React.Component<Props, Tea> {
                   <select
                     disabled={!this.props.teaTypes.length}
                     id="type"
-                    value={this.props.tea.teaType}
+                    value={this.state.teaType}
                     onChange={this.handleTypeChange}
                     onBlur={this.handleTypeChange}
                   >
@@ -120,7 +132,7 @@ class TeaEditor extends React.Component<Props, Tea> {
                   type="text"
                   id="servings"
                   onChange={this.handleServingsChange}
-                  value={this.props.tea.servings}
+                  value={this.state.servings}
                   placeholder="Servings Available"
                 />
               </div>
@@ -141,13 +153,17 @@ class TeaEditor extends React.Component<Props, Tea> {
 }
 
 const mapStateToProps = (state: State) => ({
-  tea: state.teas,
+  teas: state.teas,
   teaTypes: state.teaTypes
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
   handleSubmit: (tea: any) => {
-    dispatch(addTea(tea));
+    if (tea.edit === true) {
+      dispatch(editTea(tea));
+    } else {
+      dispatch(addTea(tea));
+    }
   }
 });
 

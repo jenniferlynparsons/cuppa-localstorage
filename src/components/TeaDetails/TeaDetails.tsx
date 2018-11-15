@@ -32,4 +32,3 @@ const mapStateToProps = (state: State, ownProps: Tea) => ({
 });
 
 export default connect(mapStateToProps)(TeaDetails);
-// calls store.getState

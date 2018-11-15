@@ -6,10 +6,10 @@ export default (state: Tea[] = [], action: Action): Tea[] => {
       // return new state with new array for all three actions
       return [...state, action.payload];
     case "DELETE_TEA":
-      console.log(action.payload);
       return state.filter(t => t.id !== action.payload.id);
-    // case "EDIT_TEA":
-    //   return state.map(t => (t.id === action.payload.id ? action.payload : t));
+    case "EDIT_TEA":
+      console.log(action.payload);
+      return state.map(t => (t.id === action.payload.id ? action.payload : t));
   }
   return state;
 };

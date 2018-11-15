@@ -34,7 +34,7 @@ class TeaList extends React.Component<Props> {
                   <td>{tea.teaType}</td>
                   <td>{tea.servings}</td>
                   <td>
-                    <a href="/">Edit</a>
+                    <a href={"/edit-tea/" + tea.id}>Edit</a>
                   </td>
                   <td>
                     <button
