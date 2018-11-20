@@ -2,7 +2,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { State, Props, Tea } from "../../interfaces";
-
 class TeaDetails extends React.Component<Props> {
   render() {
     return (

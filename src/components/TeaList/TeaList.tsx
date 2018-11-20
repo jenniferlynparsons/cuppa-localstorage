@@ -10,6 +10,7 @@ class TeaList extends React.Component<Props> {
   };
 
   render() {
+    console.log(JSON.stringify(this.props));
     return (
       <div className="container">
         <table className="table is-striped is-fullwidth">
