@@ -2,11 +2,16 @@
 import React from "react";
 import uuidv4 from "uuid/v4";
 import { connect } from "react-redux";
+import { Link } from "@reach/router";
 import { Props, State, Tea } from "../../interfaces";
 import { addTea, editTea } from "../../actions";
 
 class TeaEditor extends React.Component<Props, Tea> {
   state = {
+    flash: {
+      name: "",
+      id: ""
+    },
     id: "",
     name: "",
     brand: "",
@@ -55,20 +60,40 @@ class TeaEditor extends React.Component<Props, Tea> {
   handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     this.props.handleSubmit(this.state);
-    this.setState({ ...this.state, edit: false });
+    this.setState({
+      flash: {
+        name: this.state.name,
+        id: this.state.id
+      },
+      id: "",
+      name: "",
+      brand: "",
+      teaType: "",
+      servings: "",
+      edit: false
+    });
   };
 
   componentDidMount() {
     if (this.props.id) {
       const filterTeas = this.props.teas.filter(t => t.id === this.props.id);
       const currentTea = { ...filterTeas[0] };
-      this.setState({ ...currentTea });
+      this.setState({ ...currentTea, edit: true });
     }
   }
 
   render() {
     return (
       <div className="container">
+        {this.state.flash.name ? (
+          <div className="notification is-success">
+            {this.state.flash.name} has been succesfully saved.{" "}
+            <Link to={"../../tea/" + this.state.flash.id}>View details</Link>
+          </div>
+        ) : (
+          ""
+        )}
+
         <form onSubmit={this.handleFormSubmit}>
           <div className="field">
             <label htmlFor="name">

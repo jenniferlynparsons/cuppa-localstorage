@@ -1,6 +1,10 @@
 import { RouteComponentProps } from "@reach/router";
 
 export interface Tea {
+  flash: {
+    name: string;
+    id: string;
+  };
   id: string;
   name: string;
   brand: string;
@@ -24,6 +28,10 @@ export interface Props extends RouteComponentProps {
 }
 
 export interface State {
+  flash: {
+    name: string;
+    id: string;
+  };
   teas: Tea[];
   teaTypes: TeaTypes;
   id: string;

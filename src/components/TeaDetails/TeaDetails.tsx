@@ -2,8 +2,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { State, Props, Tea } from "../../interfaces";
+import { deleteTea } from "../../actions";
 
 class TeaDetails extends React.Component<Props> {
+  handleDeleteClick = (tea: Tea) => {
+    this.props.handleDelete(tea);
+  };
   render() {
     return (
       <div className="container content">
@@ -22,6 +26,15 @@ class TeaDetails extends React.Component<Props> {
             {this.props.tea.servings}
           </li>
         </ul>
+        <a href={"/edit-tea/" + this.props.tea.id} className="button">
+          Edit
+        </a>
+        {/* <a
+          className="button is-danger"
+          onClick={() => this.handleDeleteClick(this.props.tea)}
+        >
+          Delete
+        </a> */}
       </div>
     );
   }
@@ -31,4 +44,13 @@ const mapStateToProps = (state: State, ownProps: Tea) => ({
   tea: state.teas.find(tea => tea.id === ownProps.id)
 });
 
-export default connect(mapStateToProps)(TeaDetails);
+const mapDispatchToProps = (dispatch: any) => ({
+  handleDelete: (tea: any) => {
+    dispatch(deleteTea(tea));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TeaDetails);
