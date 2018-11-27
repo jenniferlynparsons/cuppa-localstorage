@@ -5,11 +5,15 @@ export interface Tea {
     name: string;
     id: string;
   };
+  touched: {
+    name: boolean;
+    servings: boolean;
+  };
   id: string;
   name: string;
   brand: string;
   teaType: string;
-  servings: string;
+  servings: number | string;
   edit: boolean;
 }
 
@@ -31,6 +35,10 @@ export interface State {
   flash: {
     name: string;
     id: string;
+  };
+  touched: {
+    name: boolean;
+    servings: boolean;
   };
   teas: Tea[];
   teaTypes: TeaTypes;

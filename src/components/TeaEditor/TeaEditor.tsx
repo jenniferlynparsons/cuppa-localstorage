@@ -12,6 +12,10 @@ class TeaEditor extends React.Component<Props, Tea> {
       name: "",
       id: ""
     },
+    touched: {
+      name: false,
+      servings: false
+    },
     id: "",
     name: "",
     brand: "",
@@ -19,6 +23,24 @@ class TeaEditor extends React.Component<Props, Tea> {
     servings: "",
     edit: false
   };
+
+  validate = (name, servings) => {
+    return {
+      name: name.length === 0,
+      servings: servings.length === 0
+    };
+  };
+  handleBlur = field => evt => {
+    this.setState({
+      touched: { ...this.state.touched, [field]: true }
+    });
+  };
+
+  canBeSubmitted() {
+    const errors = validate(this.state.email, this.state.password);
+    const isDisabled = Object.keys(errors).some(x => errors[x]);
+    return !isDisabled;
+  }
 
   handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
@@ -48,30 +70,44 @@ class TeaEditor extends React.Component<Props, Tea> {
     });
   };
 
-  handleSubmitButton = () => {
+  handleSubmitButton = (e, errors) => {
     if (!this.state.id) {
       this.setState({
         ...this.state,
         id: uuidv4()
       });
     }
+
+    this.setState({
+      touched: {
+        ...this.state.touched,
+        name: errors.name,
+        servings: errors.servings
+      }
+    });
   };
 
-  handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  handleFormSubmit = (event: React.FormEvent<HTMLFormElement>, errors: any) => {
     event.preventDefault();
-    this.props.handleSubmit(this.state);
-    this.setState({
-      flash: {
-        name: this.state.name,
-        id: this.state.id
-      },
-      id: "",
-      name: "",
-      brand: "",
-      teaType: "",
-      servings: "",
-      edit: false
-    });
+    if ((errors.servings || errors.name) === false) {
+      this.props.handleSubmit(this.state);
+      this.setState({
+        flash: {
+          name: this.state.name,
+          id: this.state.id
+        },
+        touched: {
+          name: false,
+          servings: false
+        },
+        id: "",
+        name: "",
+        brand: "",
+        teaType: "",
+        servings: "",
+        edit: false
+      });
+    }
   };
 
   componentDidMount() {
@@ -83,6 +119,16 @@ class TeaEditor extends React.Component<Props, Tea> {
   }
 
   render() {
+    const errors = this.validate(this.state.name, this.state.servings);
+    // TODO refine validation on form submit
+    const isDisabled = Object.keys(errors).some(x => errors[x]);
+    const shouldMarkError = field => {
+      const hasError = errors[field];
+      const shouldShow = this.state.touched[field];
+
+      return hasError ? shouldShow : false;
+    };
+
     return (
       <div className="container">
         {this.state.flash.name ? (
@@ -94,20 +140,28 @@ class TeaEditor extends React.Component<Props, Tea> {
           ""
         )}
 
-        <form onSubmit={this.handleFormSubmit}>
+        <form onSubmit={e => this.handleFormSubmit(e, errors)}>
           <div className="field">
             <label htmlFor="name">
               Tea Name
               <div className="control">
                 <input
-                  className="input"
+                  className={
+                    shouldMarkError("name") ? "input is-danger" : "input"
+                  }
                   type="text"
                   id="name"
                   onChange={this.handleNameChange}
                   value={this.state.name}
                   placeholder="Tea Name"
+                  onBlur={this.handleBlur("name")}
                 />
               </div>
+              {shouldMarkError("name") ? (
+                <p className="help is-danger">Add a Tea Name</p>
+              ) : (
+                ""
+              )}
             </label>
           </div>
           <div className="field">
@@ -153,20 +207,30 @@ class TeaEditor extends React.Component<Props, Tea> {
               Servings Available
               <div className="control">
                 <input
-                  className="input"
-                  type="text"
+                  className={
+                    shouldMarkError("servings") ? "input is-danger" : "input"
+                  }
+                  type="number"
                   id="servings"
                   onChange={this.handleServingsChange}
                   value={this.state.servings}
                   placeholder="Servings Available"
+                  onBlur={this.handleBlur("servings")}
                 />
               </div>
+              {shouldMarkError("servings") ? (
+                <p className="help is-danger">Add a Number of Servings</p>
+              ) : (
+                ""
+              )}
             </label>
           </div>
           <div className="control">
             <button
-              className="button is-primary"
-              onClick={this.handleSubmitButton}
+              className={
+                isDisabled ? "button is-disabled" : "button is-primary"
+              }
+              onClick={e => this.handleSubmitButton(e, errors)}
             >
               Submit
             </button>
