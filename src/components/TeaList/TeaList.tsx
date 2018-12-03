@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "@reach/router";
 import { connect } from "react-redux";
-import { Props, State, Tea } from "../../interfaces";
+import { TeaListProps, AppState, Tea } from "../../interfaces";
 import { deleteTea } from "../../actions";
 
-class TeaList extends React.Component<Props> {
+class TeaList extends React.Component<TeaListProps> {
   handleDeleteClick = (tea: Tea) => {
     this.props.handleDelete(tea);
   };
@@ -54,7 +54,7 @@ class TeaList extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: State) => ({
+const mapStateToProps = (state: AppState) => ({
   teas: state.teas,
   teaTypes: state.teaTypes
 });

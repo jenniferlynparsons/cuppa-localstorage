@@ -3,10 +3,10 @@ import React from "react";
 import uuidv4 from "uuid/v4";
 import { connect } from "react-redux";
 import { Link } from "@reach/router";
-import { Props, State, Tea } from "../../interfaces";
+import { TeaEditorProps, TeaEditorState, Errors } from "../../interfaces";
 import { addTea, editTea } from "../../actions";
 
-class TeaEditor extends React.Component<Props, Tea> {
+class TeaEditor extends React.Component<TeaEditorProps, {}> {
   state = {
     flash: {
       name: "",
@@ -24,53 +24,49 @@ class TeaEditor extends React.Component<Props, Tea> {
     edit: false
   };
 
-  validate = (name, servings) => {
+  validate = (name: string, servings: string) => {
     return {
       name: name.length === 0,
       servings: servings.length === 0
     };
   };
-  handleBlur = field => evt => {
+
+  handleBlur = (field: HTMLFormElement) => () => {
     this.setState({
       touched: { ...this.state.touched, [field]: true }
     });
   };
 
-  canBeSubmitted() {
-    const errors = validate(this.state.email, this.state.password);
-    const isDisabled = Object.keys(errors).some(x => errors[x]);
-    return !isDisabled;
-  }
-
   handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event);
     this.setState({
       ...this.state,
-      name: event.target.value
+      name: event.currentTarget.value
     });
   };
 
   handleBrandChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
       ...this.state,
-      brand: event.target.value
+      brand: event.currentTarget.value
     });
   };
 
   handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({
       ...this.state,
-      teaType: event.target.value
+      teaType: event.currentTarget.value
     });
   };
 
   handleServingsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
       ...this.state,
-      servings: event.target.value
+      servings: event.currentTarget.value
     });
   };
 
-  handleSubmitButton = (e, errors) => {
+  handleSubmitButton = (e, errors: Errors) => {
     if (!this.state.id) {
       this.setState({
         ...this.state,
@@ -87,7 +83,10 @@ class TeaEditor extends React.Component<Props, Tea> {
     });
   };
 
-  handleFormSubmit = (event: React.FormEvent<HTMLFormElement>, errors: any) => {
+  handleFormSubmit = (
+    event: React.FormEvent<HTMLFormElement>,
+    errors: Errors
+  ) => {
     event.preventDefault();
     if ((errors.servings || errors.name) === false) {
       this.props.handleSubmit(this.state);
@@ -122,7 +121,7 @@ class TeaEditor extends React.Component<Props, Tea> {
     const errors = this.validate(this.state.name, this.state.servings);
     // TODO refine validation on form submit
     const isDisabled = Object.keys(errors).some(x => errors[x]);
-    const shouldMarkError = field => {
+    const shouldMarkError = (field: string) => {
       const hasError = errors[field];
       const shouldShow = this.state.touched[field];
 
@@ -241,7 +240,7 @@ class TeaEditor extends React.Component<Props, Tea> {
   }
 }
 
-const mapStateToProps = (state: State) => ({
+const mapStateToProps = (state: TeaEditorState) => ({
   teas: state.teas,
   teaTypes: state.teaTypes
 });

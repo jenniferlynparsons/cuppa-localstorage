@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import React from "react";
 import { connect } from "react-redux";
-import { State, Props, Tea } from "../../interfaces";
+import { AppState, TeaDetailsProps, Tea } from "../../interfaces";
 import { deleteTea } from "../../actions";
 
-class TeaDetails extends React.Component<Props> {
+class TeaDetails extends React.Component<TeaDetailsProps, {}> {
   handleDeleteClick = (tea: Tea) => {
     this.props.handleDelete(tea);
   };
@@ -40,12 +40,12 @@ class TeaDetails extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: State, ownProps: Tea) => ({
+const mapStateToProps = (state: AppState, ownProps: Tea) => ({
   tea: state.teas.find(tea => tea.id === ownProps.id)
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  handleDelete: (tea: any) => {
+  handleDelete: (tea: Tea) => {
     dispatch(deleteTea(tea));
   }
 });
