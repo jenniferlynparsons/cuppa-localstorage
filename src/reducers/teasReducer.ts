@@ -8,7 +8,7 @@ export default (state: Tea[] = [], action: Action): Tea[] => {
     case "DELETE_TEA":
       return state.filter(t => t.id !== action.payload.id);
     case "EDIT_TEA":
-      console.log(action.payload);
+      // console.log(action.payload);
       return state.map(t => (t.id === action.payload.id ? action.payload : t));
   }
   return state;

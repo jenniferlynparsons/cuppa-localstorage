@@ -6,7 +6,7 @@ import { Link } from "@reach/router";
 import { TeaEditorProps, TeaEditorState, Errors } from "../../interfaces";
 import { addTea, editTea } from "../../actions";
 
-class TeaEditor extends React.Component<TeaEditorProps, {}> {
+export class TeaEditor extends React.Component<TeaEditorProps, {}> {
   state = {
     flash: {
       name: "",
@@ -37,29 +37,28 @@ class TeaEditor extends React.Component<TeaEditorProps, {}> {
     });
   };
 
-  handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event);
+  handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({
       ...this.state,
       name: event.currentTarget.value
     });
   };
 
-  handleBrandChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  handleBrandChange = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({
       ...this.state,
       brand: event.currentTarget.value
     });
   };
 
-  handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  handleTypeChange = (event: React.FormEvent<HTMLSelectElement>) => {
     this.setState({
       ...this.state,
       teaType: event.currentTarget.value
     });
   };
 
-  handleServingsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  handleServingsChange = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({
       ...this.state,
       servings: event.currentTarget.value

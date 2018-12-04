@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { AppState, TeaDetailsProps, Tea } from "../../interfaces";
 import { deleteTea } from "../../actions";
 
-class TeaDetails extends React.Component<TeaDetailsProps, {}> {
+export class TeaDetails extends React.Component<TeaDetailsProps, {}> {
   handleDeleteClick = (tea: Tea) => {
     this.props.handleDelete(tea);
   };
