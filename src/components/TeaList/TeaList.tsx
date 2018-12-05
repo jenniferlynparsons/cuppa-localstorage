@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "@reach/router";
-import { connect } from "react-redux";
-import { TeaListProps, AppState, Tea } from "../../interfaces";
-import { deleteTea } from "../../actions";
+import { TeaListProps, Tea } from "../../interfaces";
 
-export class TeaList extends React.Component<TeaListProps> {
+export class TeaList extends React.Component<TeaListProps, {}> {
   handleDeleteClick = (tea: Tea) => {
     this.props.handleDelete(tea);
   };
@@ -54,18 +52,4 @@ export class TeaList extends React.Component<TeaListProps> {
   }
 }
 
-const mapStateToProps = (state: AppState) => ({
-  teas: state.teas,
-  teaTypes: state.teaTypes
-});
-
-const mapDispatchToProps = (dispatch: any) => ({
-  handleDelete: (tea: any) => {
-    dispatch(deleteTea(tea));
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TeaList);
+export default TeaList;

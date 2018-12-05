@@ -1,5 +1,4 @@
-import { createStore, compose, applyMiddleware, combineReducers } from "redux";
-import thunk from "redux-thunk";
+import { createStore, combineReducers } from "redux";
 import teas from "./reducers/teasReducer";
 import teaTypes from "./reducers/typesReducer";
 import { loadTeas, saveTeas } from "./storage";
@@ -12,14 +11,3 @@ store.subscribe(() => {
 });
 
 export default store;
-
-// const store = createStore(
-//   combineReducers({ teas, teaTypes }),
-//   compose(
-//     applyMiddleware(thunk),
-//     typeof window === "object" &&
-//     typeof window.devToolsExtension !== "undefined"
-//       ? window.devToolsExtension()
-//       : f => f
-//   )
-// );

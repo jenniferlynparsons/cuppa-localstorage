@@ -1,3 +1,3 @@
-import TeaDetails from "./TeaDetails";
+import TeaDetailsContainer from "./TeaDetailsContainer";
 
-export default TeaDetails;
+export default TeaDetailsContainer;

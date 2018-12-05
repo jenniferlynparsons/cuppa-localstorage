@@ -1,3 +1,3 @@
-import TeaList from "./TeaList";
+import TeaListContainer from "./TeaListContainer";
 
-export default TeaList;
+export default TeaListContainer;
